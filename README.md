@@ -65,7 +65,7 @@ Discharge data from the Global Runoff Data Centre (GRDC), Koblenz, Germany: http
 
 ## Author
 
-itshams7 - prepared as part of a graduate application portfolio, IWRM Program, McGill University.
+Shamseldin Abdelrahim - developed as an independent research study motivated by water security challenges facing communities across the Nile Basin, where reliable streamflow forecasting directly supports flood preparedness, irrigation planning, and drought resilience in data-scarce regions.
 
 ## License
 
