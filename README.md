@@ -2,7 +2,7 @@
 
 Monthly discharge forecasting using wavelet-decomposed neural networks (WA-MLP), benchmarked against Naive, ARIMA, raw MLP, and Random Forest models across five long-record GRDC gauging stations on the Blue Nile and White Nile.
 
-This project was developed as an independent research study in support of a graduate application to McGill University's Integrated Water Resources Management (IWRM) program, and is methodologically aligned with wavelet-hydrology approaches developed by Dr. Jan Adamowski and colleagues.
+This independent research project investigates streamflow forecasting in data-scarce Nile Basin environments, drawing on wavelet-based hydrological modelling methods.
 
 ## Stations
 
