@@ -1,72 +1,46 @@
-# Wavelet-Neural Network Streamflow Forecasting: Nile Basin, Sudan & South Sudan
+# Wavelet–Neural Streamflow Forecasting in the Nile Basin
 
-Monthly discharge forecasting using wavelet-decomposed neural networks (WA-MLP), benchmarked against Naive, ARIMA, raw MLP, and Random Forest models across five long-record GRDC gauging stations on the Blue Nile and White Nile.
+**Hydrology | Time-series forecasting | Environmental data science**
 
-This independent research project investigates streamflow forecasting in data-scarce Nile Basin environments, drawing on wavelet-based hydrological modelling methods.
+## Overview
 
-## Stations
+An independent modelling study of monthly streamflow forecasting across selected Nile Basin gauging stations in Sudan and South Sudan. The project compares wavelet-assisted neural networks with conventional statistical and machine-learning baselines, including tests of missing-data robustness and cross-station transfer.
 
-| Station | River | Country | Record Period (approx.) |
-|---|---|---|---|
-| Khartoum | Blue Nile | Sudan | 1900s-1980s |
-| Sennar | Blue Nile | Sudan | 1900s-1980s |
-| Roseires | Blue Nile | Sudan | 1900s-1980s |
-| Dongola | Main Nile | Sudan | 1900s-1980s |
-| Malakal | White Nile | South Sudan | 1900s-1980s |
+## Study Area and Data
 
-Data: monthly discharge records from the Global Runoff Data Centre (GRDC). See data/DATA_ACCESS.md for how to obtain the raw files.
+The analysis uses monthly discharge records associated with five stations: Khartoum, Sennar, Roseires, Dongola and Malakal.
+
+**Data source:** [Global Runoff Data Centre (GRDC)](https://www.bafg.de/GRDC/EN/Home/homepage_node.html). See the repository's data-access documentation for source and redistribution considerations.
 
 ## Methods
 
-- Signal decomposition: Discrete Wavelet Transform (PyWavelets) decomposing each discharge series into approximation (trend) and detail (high-frequency) sub-signals, used as engineered inputs to the forecasting models.
-- Models: Naive persistence, ARIMA (statsmodels), raw-input MLP, wavelet-input MLP (scikit-learn MLPRegressor), and Random Forest (RandomForestRegressor) benchmark.
-- Evaluation: RMSE, R-squared, Nash-Sutcliffe Efficiency (NSE), Kling-Gupta Efficiency (KGE), and Wilcoxon signed-rank tests for paired-model significance.
-- Robustness testing: random dropout and contiguous block-gap missing-data scenarios (0-40%).
-- Multi-horizon forecasting: 1, 3, 6, and 12-month-ahead evaluation.
-- Transfer learning: same-basin (Blue Nile to Blue Nile) and cross-basin (Blue Nile to White Nile) generalization tests.
+- Discrete wavelet decomposition and engineered time-series features
+- Naive persistence, ARIMA, multilayer perceptron and random forest baselines
+- Forecast evaluation using RMSE, R², NSE and KGE
+- Random and contiguous missing-data scenarios, up to 40%
+- Forecast horizons of 1, 3, 6 and 12 months
+- Within-basin and cross-basin transfer experiments
 
-## Key Findings
+## Reported Findings
 
-1. Wavelet-MLP outperforms all baselines at all 5 stations across all 4 metrics.
-2. Wavelet-MLP is substantially more stable than raw MLP under both random and contiguous missing-data gaps.
-3. Wavelet benefit tracks basin hydrology: the Blue Nile (26-31% high-frequency energy) sees a larger boost than the buffered White Nile (~92% trend energy, Lake Victoria/Sudd-regulated), where the signal is already smooth.
-4. Random Forest benefits from wavelet inputs at 4 of 5 stations - the wavelet advantage is more consistent for neural networks than tree ensembles.
-5. Wilcoxon signed-rank tests confirm the wavelet-MLP improvement is statistically significant at all 5 stations (p < 0.05; p ~ 0 at 4 stations, p = 0.011 at Malakal).
-6. The wavelet advantage is strongest at short forecast horizons (1-3 months) and narrows at longer horizons, with a slight reversal at Malakal at 12 months.
-7. Transfer learning succeeds within-basin (Blue Nile to unseen Khartoum, NSE = 0.98) but fails across basins (Blue Nile to Malakal, NSE = 0.11-0.19), consistent with hydrological expectations, though wavelet inputs still outperform raw inputs even in the failure case.
+The study reports stronger performance for the wavelet-assisted MLP than the tested baselines in its principal station-level comparisons, with improved robustness under simulated missing observations. Reported transfer results are more favourable within the Blue Nile than between hydrologically distinct basins.
 
-## Repository Structure
+These conclusions describe the experiments in this repository and should not be generalized beyond the datasets and evaluation design without further validation.
 
-notebooks folder - Analysis notebooks (Colab-developed)
-figures folder - All 10 output figures (fig0-fig9)
-data folder - GRDC data-access notes
-results folder - Metric tables, significance test outputs
-requirements.txt
-README.md
+## Repository Guide
 
-## Figures
+| Path | Contents |
+| --- | --- |
+| `notebooks/` | Analysis notebook |
+| `figures/` | Study figures |
+| `data/` | Data-access documentation and supporting materials |
+| `requirements.txt` | Python package requirements |
+| `README.md` | Project summary |
 
-| # | Description |
-|---|---|
-| fig0 | Example wavelet decomposition |
-| fig1 | Hydrograph overview, all stations |
-| fig2 | Baseline model comparison (Naive/ARIMA/MLP/WA-MLP) |
-| fig3 | Wavelet energy distribution by station |
-| fig4 | Missing-data robustness (random + block-gap) |
-| fig5 | Multi-horizon forecast performance |
-| fig6 | Transfer learning results |
-| fig7 | Random Forest comparison |
-| fig8 | Statistical significance table |
-| fig9 | Study area map |
+## Research Context
 
-## Data Source
-
-Discharge data from the Global Runoff Data Centre (GRDC), Koblenz, Germany: https://www.bafg.de/GRDC/EN/Home/homepage_node.html
+The work is motivated by flood preparedness, irrigation planning and water-security challenges in data-scarce environments.
 
 ## Author
 
-Shamseldin Abdelrahim - developed as an independent research study motivated by water security challenges facing communities across the Nile Basin, where reliable streamflow forecasting directly supports flood preparedness, irrigation planning, and drought resilience in data-scarce regions.
-
-## License
-
-Code: MIT License. GRDC data subject to GRDC's own data policy/terms of use - see the GRDC portal for redistribution rules before including raw data files in this repository.
+Shamseldin Abdelrahim
